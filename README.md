@@ -1,16 +1,14 @@
-# lb4-hello
-
-This application is generated using [LoopBack 4 CLI](https://loopback.io/doc/en/lb4/Command-line-interface.html) with the
-[initial project layout](https://loopback.io/doc/en/lb4/Loopback-application-layout.html).
+# lb4training
 
 ## Install dependencies
 
-By default, dependencies were installed when this application was generated.
-Whenever dependencies in `package.json` are changed, run the following command:
+You will require a running postgresql service to run the APIs other than the `/role` APIs which is based on in-memory datasource
 
-```sh
-yarn install
-```
+Once postgresql is available, copy the contents of `.env.defaults` to `.env`
+
+Run `yarn` to install all dependencies.
+
+Run `yarn premigrate` and `yarn migrate` to make the required tables from the Model schemas.
 
 ## Run the application
 
@@ -18,52 +16,12 @@ yarn install
 yarn start
 ```
 
-You can also run `node .` to skip the build step.
-
 Open http://127.0.0.1:3000 in your browser.
 
-## Rebuild the project
+## Training topics covered till now
 
-To incrementally build the project:
-
-```sh
-yarn run build
-```
-
-To force a full build by cleaning up cached artifacts:
-
-```sh
-yarn run rebuild
-```
-
-## Fix code style and formatting issues
-
-```sh
-yarn run lint
-```
-
-To automatically fix such issues:
-
-```sh
-yarn run lint:fix
-```
-
-## Other useful commands
-
-- `yarn run migrate`: Migrate database schemas for models
-- `yarn run openapi-spec`: Generate OpenAPI spec into a file
-- `yarn run docker:build`: Build a Docker image for this application
-- `yarn run docker:run`: Run this application inside a Docker container
-
-## Tests
-
-```sh
-yarn test
-```
-
-## What's next
-
-Please check out [LoopBack 4 documentation](https://loopback.io/doc/en/lb4/) to
-understand how you can continue to add features to this application.
-
-[![LoopBack](https://github.com/loopbackio/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png)](http://loopback.io/)
+- API to do CRUD operations on Roles model which has an in-memory datasource `db/memodb.json`
+- API to do CRUD operations on Customers and Users models, where the relation between these two entities is made as per the task desciption (User belongs to Customer). APIs are available to fetch joined table data.
+- Made a custom sequence for the application which logs details of request and response and has the logic to restrict API access to ALLOWED_ORIGINS which we get from the env file. Type definitions for env file are also made in `global.d.ts`
+- Implemented winston logger as a provider in a component which is used to log request and response as mentioned above.
+- Modified the boot options to load controllers from a different directory (\_controllers)
