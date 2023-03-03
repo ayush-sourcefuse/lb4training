@@ -16,7 +16,7 @@ Run `yarn premigrate` and `yarn migrate` to make the required tables from the Mo
 yarn start
 ```
 
-Open http://127.0.0.1:3000 in your browser.
+Open http://127.0.0.1:8000 in your browser.
 
 ## Training topics covered till now
 

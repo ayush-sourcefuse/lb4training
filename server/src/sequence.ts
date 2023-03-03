@@ -34,13 +34,13 @@ export class MySequence implements SequenceHandler {
       this.logger.info(
         `Request: ${request.method}=>${request.path}, Start Time: ${startTimeFormatted}, User-Agent: ${request.headers['user-agent']}, IP: ${request.ip}`,
       );
-      const refererBaseUrl = new URL(request.headers.referer ?? '').origin;
-      const allowedOrigins = process.env.ALLOWED_ORIGIN.split(',').filter(
-        o => !!o.length,
-      );
-      if (!allowedOrigins.includes(refererBaseUrl)) {
-        throw new HttpErrors.Forbidden();
-      }
+      // const refererBaseUrl = new URL(request.headers.referer ?? '').origin;
+      // const allowedOrigins = (process.env.ALLOWED_ORIGIN ?? "").split(',').filter(
+      //   o => !!o.length,
+      // );
+      // if (!allowedOrigins.includes(refererBaseUrl)) {
+      //   throw new HttpErrors.Forbidden();
+      // }
       const finished = await this.invokeMiddleware(context);
       if (finished) {
         return;

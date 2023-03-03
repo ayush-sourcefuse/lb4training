@@ -5,5 +5,5 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src", "global.d.ts"]
+  "include": ["src", "server/global.d.ts"]
 }
