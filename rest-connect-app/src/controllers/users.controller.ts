@@ -14,7 +14,7 @@ export class UsersController {
 
   @get('/users/count')
   async countUsers(): Promise<UserCountResponse> {
-    return this.userService.count();
+    return this.userService.UsersController_count();
   }
 
   @post('/users')
@@ -24,12 +24,12 @@ export class UsersController {
     const {name, isActive, customerId} = user;
     const createdAt = new Date().toISOString();
     const updatedAt = createdAt;
-    return this.userService.createUser(
+    return this.userService.UsersController_create({
       name,
       isActive,
       customerId,
       createdAt,
       updatedAt,
-    );
+    });
   }
 }

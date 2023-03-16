@@ -1,0 +1,2013 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "lb4-hello",
+      "version": "0.0.1",
+      "description": "encara messi",
+      "contact": {
+        "name": "Ayush Singh",
+        "email": "ayush.singh@sourcefuse.com"
+      }
+    },
+    "paths": {
+      "/customers/count": {
+        "get": {
+          "x-controller-name": "CustomerController",
+          "x-operation-name": "count",
+          "tags": [
+            "CustomerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Customer model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Customer.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Customer>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "CustomerController.count"
+        }
+      },
+      "/customers/{id}": {
+        "put": {
+          "x-controller-name": "CustomerController",
+          "x-operation-name": "replaceById",
+          "tags": [
+            "CustomerController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Customer PUT success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "CustomerController.replaceById"
+        },
+        "patch": {
+          "x-controller-name": "CustomerController",
+          "x-operation-name": "updateById",
+          "tags": [
+            "CustomerController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Customer PATCH success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerPartial"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "CustomerController.updateById"
+        },
+        "get": {
+          "x-controller-name": "CustomerController",
+          "x-operation-name": "findById",
+          "tags": [
+            "CustomerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Customer model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CustomerWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Customer.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "CustomerController.findById"
+        },
+        "delete": {
+          "x-controller-name": "CustomerController",
+          "x-operation-name": "deleteById",
+          "tags": [
+            "CustomerController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Customer DELETE success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "CustomerController.deleteById"
+        }
+      },
+      "/customers": {
+        "post": {
+          "x-controller-name": "CustomerController",
+          "x-operation-name": "create",
+          "tags": [
+            "CustomerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Customer model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewCustomer"
+                }
+              }
+            }
+          },
+          "operationId": "CustomerController.create"
+        },
+        "patch": {
+          "x-controller-name": "CustomerController",
+          "x-operation-name": "updateAll",
+          "tags": [
+            "CustomerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Customer PATCH success count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Customer.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Customer>"
+                  }
+                }
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerPartial"
+                }
+              }
+            }
+          },
+          "operationId": "CustomerController.updateAll"
+        },
+        "get": {
+          "x-controller-name": "CustomerController",
+          "x-operation-name": "find",
+          "tags": [
+            "CustomerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Customer model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CustomerWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Customer.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "CustomerController.find"
+        }
+      },
+      "/ping": {
+        "get": {
+          "x-controller-name": "PingController",
+          "x-operation-name": "ping",
+          "tags": [
+            "PingController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Ping Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PingResponse"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PingController.ping"
+        }
+      },
+      "/roles/count": {
+        "get": {
+          "x-controller-name": "RoleController",
+          "x-operation-name": "count",
+          "tags": [
+            "RoleController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Role model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Role.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Role>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "RoleController.count"
+        }
+      },
+      "/roles/{id}": {
+        "put": {
+          "x-controller-name": "RoleController",
+          "x-operation-name": "replaceById",
+          "tags": [
+            "RoleController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Role PUT success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Role"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "RoleController.replaceById"
+        },
+        "patch": {
+          "x-controller-name": "RoleController",
+          "x-operation-name": "updateById",
+          "tags": [
+            "RoleController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Role PATCH success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolePartial"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "RoleController.updateById"
+        },
+        "get": {
+          "x-controller-name": "RoleController",
+          "x-operation-name": "findById",
+          "tags": [
+            "RoleController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Role model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RoleWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Role.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "RoleController.findById"
+        },
+        "delete": {
+          "x-controller-name": "RoleController",
+          "x-operation-name": "deleteById",
+          "tags": [
+            "RoleController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Role DELETE success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "RoleController.deleteById"
+        }
+      },
+      "/roles": {
+        "post": {
+          "x-controller-name": "RoleController",
+          "x-operation-name": "create",
+          "tags": [
+            "RoleController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Role model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Role"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewRole"
+                }
+              }
+            }
+          },
+          "operationId": "RoleController.create"
+        },
+        "patch": {
+          "x-controller-name": "RoleController",
+          "x-operation-name": "updateAll",
+          "tags": [
+            "RoleController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Role PATCH success count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Role.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Role>"
+                  }
+                }
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolePartial"
+                }
+              }
+            }
+          },
+          "operationId": "RoleController.updateAll"
+        },
+        "get": {
+          "x-controller-name": "RoleController",
+          "x-operation-name": "find",
+          "tags": [
+            "RoleController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Role model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RoleWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Role.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "RoleController.find"
+        }
+      },
+      "/users/count": {
+        "get": {
+          "x-controller-name": "UsersController",
+          "x-operation-name": "count",
+          "tags": [
+            "UsersController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Users model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Users.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Users>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "UsersController.count"
+        }
+      },
+      "/users/{id}/customer": {
+        "get": {
+          "x-controller-name": "UsersCustomerController",
+          "x-operation-name": "getCustomer",
+          "tags": [
+            "UsersCustomerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Customer belonging to Users",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Customer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "UsersCustomerController.getCustomer"
+        }
+      },
+      "/users/{id}": {
+        "put": {
+          "x-controller-name": "UsersController",
+          "x-operation-name": "replaceById",
+          "tags": [
+            "UsersController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Users PUT success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "UsersController.replaceById"
+        },
+        "patch": {
+          "x-controller-name": "UsersController",
+          "x-operation-name": "updateById",
+          "tags": [
+            "UsersController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Users PATCH success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersPartial"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "UsersController.updateById"
+        },
+        "get": {
+          "x-controller-name": "UsersController",
+          "x-operation-name": "findById",
+          "tags": [
+            "UsersController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Users model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UsersWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Users.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "UsersController.findById"
+        },
+        "delete": {
+          "x-controller-name": "UsersController",
+          "x-operation-name": "deleteById",
+          "tags": [
+            "UsersController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Users DELETE success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "number"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "UsersController.deleteById"
+        }
+      },
+      "/users": {
+        "post": {
+          "x-controller-name": "UsersController",
+          "x-operation-name": "create",
+          "tags": [
+            "UsersController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Users model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewUsers"
+                }
+              }
+            }
+          },
+          "operationId": "UsersController.create"
+        },
+        "patch": {
+          "x-controller-name": "UsersController",
+          "x-operation-name": "updateAll",
+          "tags": [
+            "UsersController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Users PATCH success count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Users.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Users>"
+                  }
+                }
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersPartial"
+                }
+              }
+            }
+          },
+          "operationId": "UsersController.updateAll"
+        },
+        "get": {
+          "x-controller-name": "UsersController",
+          "x-operation-name": "find",
+          "tags": [
+            "UsersController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Users model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UsersWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Users.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "UsersController.find"
+        }
+      }
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8000"
+      }
+    ],
+    "components": {
+      "schemas": {
+        "Customer": {
+          "title": "Customer",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "website": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "website",
+            "address"
+          ],
+          "additionalProperties": false
+        },
+        "NewCustomer": {
+          "title": "NewCustomer",
+          "type": "object",
+          "description": "(tsType: Omit<Customer, 'id'>, schemaOptions: { title: 'NewCustomer', exclude: [ 'id' ] })",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "website": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "website",
+            "address"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "Omit<Customer, 'id'>"
+        },
+        "CustomerWithRelations": {
+          "title": "CustomerWithRelations",
+          "type": "object",
+          "description": "(tsType: CustomerWithRelations, schemaOptions: { includeRelations: true })",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "website": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "website",
+            "address"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "CustomerWithRelations"
+        },
+        "CustomerPartial": {
+          "title": "CustomerPartial",
+          "type": "object",
+          "description": "(tsType: Partial<Customer>, schemaOptions: { partial: true })",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "website": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "Partial<Customer>"
+        },
+        "Role": {
+          "title": "Role",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "role": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "role",
+            "isActive",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false
+        },
+        "NewRole": {
+          "title": "NewRole",
+          "type": "object",
+          "description": "(tsType: Role, schemaOptions: { title: 'NewRole' })",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "role": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "role",
+            "isActive",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "Role"
+        },
+        "RoleWithRelations": {
+          "title": "RoleWithRelations",
+          "type": "object",
+          "description": "(tsType: RoleWithRelations, schemaOptions: { includeRelations: true })",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "role": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "role",
+            "isActive",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "RoleWithRelations"
+        },
+        "RolePartial": {
+          "title": "RolePartial",
+          "type": "object",
+          "description": "(tsType: Partial<Role>, schemaOptions: { partial: true })",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "role": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "Partial<Role>"
+        },
+        "Users": {
+          "title": "Users",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "customerId": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "name",
+            "isActive",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false
+        },
+        "NewUsers": {
+          "title": "NewUsers",
+          "type": "object",
+          "description": "(tsType: Omit<Users, 'id'>, schemaOptions: { title: 'NewUsers', exclude: [ 'id' ] })",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "customerId": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "name",
+            "isActive",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "Omit<Users, 'id'>"
+        },
+        "UsersWithRelations": {
+          "title": "UsersWithRelations",
+          "type": "object",
+          "description": "(tsType: UsersWithRelations, schemaOptions: { includeRelations: true })",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "customerId": {
+              "type": "number"
+            },
+            "parentCustomer": {
+              "$ref": "#/components/schemas/CustomerWithRelations"
+            }
+          },
+          "required": [
+            "name",
+            "isActive",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "UsersWithRelations"
+        },
+        "UsersPartial": {
+          "title": "UsersPartial",
+          "type": "object",
+          "description": "(tsType: Partial<Users>, schemaOptions: { partial: true })",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "customerId": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "Partial<Users>"
+        },
+        "loopback.Count": {
+          "type": "object",
+          "title": "loopback.Count",
+          "x-typescript-type": "@loopback/repository#Count",
+          "properties": {
+            "count": {
+              "type": "number"
+            }
+          }
+        },
+        "Customer.Filter": {
+          "type": "object",
+          "title": "Customer.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "boolean"
+                    },
+                    "website": {
+                      "type": "boolean"
+                    },
+                    "address": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "name",
+                      "website",
+                      "address"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Customer.Fields"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Customer>"
+        },
+        "Customer.Filter1": {
+          "type": "object",
+          "title": "Customer.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "title": "Customer.WhereFilter",
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "boolean"
+                    },
+                    "website": {
+                      "type": "boolean"
+                    },
+                    "address": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "name",
+                      "website",
+                      "address"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Customer.Fields"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Customer>"
+        },
+        "PingResponse": {
+          "type": "object",
+          "title": "PingResponse",
+          "properties": {
+            "greeting": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "headers": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "Role.Filter": {
+          "type": "object",
+          "title": "Role.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "type": "boolean"
+                    },
+                    "isActive": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "boolean"
+                    },
+                    "updatedAt": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "role",
+                      "isActive",
+                      "createdAt",
+                      "updatedAt"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Role.Fields"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Role>"
+        },
+        "Role.Filter1": {
+          "type": "object",
+          "title": "Role.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "title": "Role.WhereFilter",
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "type": "boolean"
+                    },
+                    "isActive": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "boolean"
+                    },
+                    "updatedAt": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "role",
+                      "isActive",
+                      "createdAt",
+                      "updatedAt"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Role.Fields"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Role>"
+        },
+        "Users.ScopeFilter": {
+          "type": "object",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": true
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "include": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              }
+            }
+          },
+          "additionalProperties": false,
+          "title": "Users.ScopeFilter"
+        },
+        "Users.IncludeFilter.Items": {
+          "title": "Users.IncludeFilter.Items",
+          "type": "object",
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "parentCustomer"
+              ]
+            },
+            "scope": {
+              "$ref": "#/components/schemas/Users.ScopeFilter"
+            }
+          }
+        },
+        "Users.Filter": {
+          "type": "object",
+          "title": "Users.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "boolean"
+                    },
+                    "isActive": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "boolean"
+                    },
+                    "updatedAt": {
+                      "type": "boolean"
+                    },
+                    "customerId": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "name",
+                      "isActive",
+                      "createdAt",
+                      "updatedAt",
+                      "customerId"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Users.Fields"
+            },
+            "include": {
+              "title": "Users.IncludeFilter",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/Users.IncludeFilter.Items"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Users>"
+        },
+        "Users.ScopeFilter1": {
+          "type": "object",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "include": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "additionalProperties": false,
+          "title": "Users.ScopeFilter"
+        },
+        "Users.IncludeFilter.Items1": {
+          "title": "Users.IncludeFilter.Items",
+          "type": "object",
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "parentCustomer"
+              ]
+            },
+            "scope": {
+              "$ref": "#/components/schemas/Users.ScopeFilter1"
+            }
+          }
+        },
+        "Users.Filter1": {
+          "type": "object",
+          "title": "Users.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "title": "Users.WhereFilter",
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "boolean"
+                    },
+                    "isActive": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "boolean"
+                    },
+                    "updatedAt": {
+                      "type": "boolean"
+                    },
+                    "customerId": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "name",
+                      "isActive",
+                      "createdAt",
+                      "updatedAt",
+                      "customerId"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Users.Fields"
+            },
+            "include": {
+              "title": "Users.IncludeFilter",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/Users.IncludeFilter.Items1"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Users>"
+        }
+      }
+    }
+  }
