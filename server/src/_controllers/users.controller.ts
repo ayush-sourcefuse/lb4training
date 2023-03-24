@@ -16,14 +16,18 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
+  RestHttpErrors,
 } from '@loopback/rest';
 import {Users} from '../models';
-import {UsersRepository} from '../repositories';
+import {CustomerRepository, UsersRepository} from '../repositories';
 
 export class UsersController {
   constructor(
     @repository(UsersRepository)
-    public usersRepository : UsersRepository,
+    public usersRepository: UsersRepository,
+    @repository(CustomerRepository)
+    public customerRepository: CustomerRepository,
   ) {}
 
   @post('/users')
@@ -43,7 +47,13 @@ export class UsersController {
       },
     })
     users: Omit<Users, 'id'>,
-  ): Promise<Users> {
+  ): Promise<Users | HttpErrors.HttpError> {
+    const {customerId} = users;
+    try {
+      await this.customerRepository.findById(customerId);
+    } catch (error) {
+      return RestHttpErrors.invalidData(0, "customerId");
+    }
     return this.usersRepository.create(users);
   }
 
@@ -52,9 +62,7 @@ export class UsersController {
     description: 'Users model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Users) where?: Where<Users>,
-  ): Promise<Count> {
+  async count(@param.where(Users) where?: Where<Users>): Promise<Count> {
     return this.usersRepository.count(where);
   }
 
@@ -70,9 +78,7 @@ export class UsersController {
       },
     },
   })
-  async find(
-    @param.filter(Users) filter?: Filter<Users>,
-  ): Promise<Users[]> {
+  async find(@param.filter(Users) filter?: Filter<Users>): Promise<Users[]> {
     return this.usersRepository.find(filter);
   }
 
@@ -106,7 +112,8 @@ export class UsersController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Users, {exclude: 'where'}) filter?: FilterExcludingWhere<Users>
+    @param.filter(Users, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Users>,
   ): Promise<Users> {
     return this.usersRepository.findById(id, filter);
   }
