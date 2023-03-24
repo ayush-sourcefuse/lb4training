@@ -10,6 +10,8 @@ import {ServiceMixin} from '@loopback/service-proxy';
 import dotenv from 'dotenv-extended';
 import path from 'path';
 import {LoggerComponent} from './components/winston-logger/logger.component';
+import { AllowedOriginsMiddleware } from './middlewares/allowedOrigins.middleware';
+import { LoggerMiddleware } from './middlewares/logger.middleware';
 import {MySequence} from './sequence';
 
 export {ApplicationConfig};
@@ -17,7 +19,9 @@ export {ApplicationConfig};
 export class Lb4HelloApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {
-  constructor(options: ApplicationConfig = {}) {
+  constructor(
+    options: ApplicationConfig = {},
+  ) {
     super(options);
 
     dotenv.load({
@@ -25,8 +29,9 @@ export class Lb4HelloApplication extends BootMixin(
       errorOnMissing: false,
       includeProcessEnv: true,
     });
-
     // Set up the custom sequence
+    this.middleware(LoggerMiddleware);
+    this.middleware(AllowedOriginsMiddleware);
     this.sequence(MySequence);
 
     // Set up default home page

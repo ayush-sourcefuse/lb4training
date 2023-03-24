@@ -1,19 +1,29 @@
-import {inject} from '@loopback/core';
+import {Context, inject} from '@loopback/core';
 import {
-  FindRoute,
-  HttpErrors,
-  InvokeMethod,
   InvokeMiddleware,
-  ParseParams,
-  Reject,
-  RequestContext,
-  Send,
-  SequenceActions,
-  SequenceHandler,
+  InvokeMiddlewareOptions,
+  MiddlewareSequence,
+  RequestContext
 } from '@loopback/rest';
 import moment from 'moment';
 import {LoggerMethods} from './components/winston-logger/logger.provider';
 
+export class MySequence extends MiddlewareSequence {
+  constructor(
+    context: Context,
+    invokeMiddleware: InvokeMiddleware,
+    options: InvokeMiddlewareOptions,
+    @inject('logger.log') private logger: LoggerMethods,
+  ) {
+    super(context, invokeMiddleware, options);
+  }
+
+  async handle(context: RequestContext): Promise<void> {
+    await this.invokeMiddleware(context, this.options);
+  }
+}
+
+/*
 export class MySequence implements SequenceHandler {
   constructor(
     @inject(SequenceActions.INVOKE_MIDDLEWARE)
@@ -34,13 +44,6 @@ export class MySequence implements SequenceHandler {
       this.logger.info(
         `Request: ${request.method}=>${request.path}, Start Time: ${startTimeFormatted}, User-Agent: ${request.headers['user-agent']}, IP: ${request.ip}`,
       );
-      // const refererBaseUrl = new URL(request.headers.referer ?? '').origin;
-      // const allowedOrigins = (process.env.ALLOWED_ORIGIN ?? "").split(',').filter(
-      //   o => !!o.length,
-      // );
-      // if (!allowedOrigins.includes(refererBaseUrl)) {
-      //   throw new HttpErrors.Forbidden();
-      // }
       const finished = await this.invokeMiddleware(context);
       if (finished) {
         return;
@@ -66,3 +69,4 @@ export class MySequence implements SequenceHandler {
     }
   }
 }
+*/
